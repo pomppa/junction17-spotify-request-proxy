@@ -12,7 +12,7 @@ const BASE64_ENC = process.env.BASE64_ENC;
 const PORT = process.env.PORT;
 
 var proxyObject = {
-    url: "https://api.spotify.com/v1/:resource/:id",
+    url: "https://api.spotify.com/v1/*",
     headers: {
         'Authorization': 'Bearer '
     },
