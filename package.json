@@ -1,0 +1,19 @@
+{
+  "name": "junction17-spotify-request-proxy",
+  "version": "1.0.0",
+  "description": "proxy for spotify app to inject keys",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pomppa/junction17-spotify-request-proxy.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pomppa/junction17-spotify-request-proxy/issues"
+  },
+  "homepage": "https://github.com/pomppa/junction17-spotify-request-proxy#readme"
+}
