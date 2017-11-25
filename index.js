@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 var proxyObject = {
     url: "https://api.spotify.com/v1/:resource/:id",
     headers: {
-        'Authorization': 'Bearer ' + token
+        'Authorization': 'Bearer '
     },
     json: true
 };
