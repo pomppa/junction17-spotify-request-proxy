@@ -20,7 +20,6 @@ var proxyObject = {
 };
 
 /* start listening */
-getToken();
 app.listen(PORT, function () {
     console.log('listening');
     getToken();
