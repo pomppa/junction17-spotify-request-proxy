@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/pomppa/junction17-spotify-request-proxy/issues"
   },
-  "homepage": "https://github.com/pomppa/junction17-spotify-request-proxy#readme"
+  "homepage": "https://github.com/pomppa/junction17-spotify-request-proxy#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "express-request-proxy": "^2.0.0",
+    "node-env-file": "^0.1.8",
+    "redis": "^2.8.0",
+    "redis-server": "^1.1.0",
+    "redis-streams": "^1.1.0"
+  }
 }
