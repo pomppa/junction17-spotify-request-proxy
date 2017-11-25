@@ -50,4 +50,4 @@ function getToken() {
     });
 }
 
-app.get('/api/:resource/:id', requestProxy(proxyObject));
+app.get('/api/*', requestProxy(proxyObject));
