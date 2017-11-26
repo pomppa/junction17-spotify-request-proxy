@@ -15,6 +15,7 @@ var requestProxy = require('express-request-proxy');
 var request = require('request');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var access_token = '';
 
 var app = express();
 
@@ -25,6 +26,15 @@ var proxyObject = {
     },
     json: true
 };
+
+var proxyObjectPost = {
+    url: "https://api.spotify.com/v1/*",
+    headers: {
+        'Authorization': 'Bearer '
+    },
+    json: true
+};
+
 
 /* options to obtain bearer */
 var authOptions = {
@@ -38,6 +48,8 @@ var authOptions = {
     json: true
 };
 
+
+
 function getToken() {
     request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -48,7 +60,7 @@ function getToken() {
 }
 
 app.get('/api/*', requestProxy(proxyObject));
-app.post('/api/*', requestProxy(proxyObject));
+app.post('/api/*', requestProxy(proxyObjectPost));
 
 
 /* oauth2 */
@@ -78,7 +90,7 @@ app.get('/login', function(req, res) {
     res.cookie(stateKey, state);
 
     // your application requests authorization
-    var scope = 'user-read-private user-read-email';
+    var scope = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -129,6 +141,8 @@ app.get('/callback', function(req, res) {
                     headers: { 'Authorization': 'Bearer ' + access_token },
                     json: true
                 };
+
+                proxyObjectPost.headers.Authorization = 'Bearer ' + access_token;
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function(error, response, body) {
