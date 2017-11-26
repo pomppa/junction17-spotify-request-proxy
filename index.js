@@ -15,7 +15,6 @@ var requestProxy = require('express-request-proxy');
 var request = require('request');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-var access_token = '';
 
 var app = express();
 
@@ -90,7 +89,7 @@ app.get('/login', function(req, res) {
     res.cookie(stateKey, state);
 
     // your application requests authorization
-    var scope = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-private';
+    var scope = 'user-read-private user-read-email user-read-birthdate user-library-read playlist-modify-public playlist-modify-private';
     res.redirect('https://accounts.spotify.com/authorize?' +
         querystring.stringify({
             response_type: 'code',
@@ -143,6 +142,7 @@ app.get('/callback', function(req, res) {
                 };
 
                 proxyObjectPost.headers.Authorization = 'Bearer ' + access_token;
+                proxyObject.headers.Authorization = 'Bearer ' + access_token;
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function(error, response, body) {
@@ -155,6 +155,8 @@ app.get('/callback', function(req, res) {
                         access_token: access_token,
                         refresh_token: refresh_token
                     }));
+
+
             } else {
                 res.redirect('/#' +
                     querystring.stringify({
