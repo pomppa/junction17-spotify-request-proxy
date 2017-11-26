@@ -48,6 +48,8 @@ function getToken() {
 }
 
 app.get('/api/*', requestProxy(proxyObject));
+app.post('/api/*', requestProxy(proxyObject));
+
 
 /* oauth2 */
 /**
